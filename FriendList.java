@@ -21,19 +21,20 @@ class FriendList {
 
     public void addFriend() {
         Scanner scanner = new Scanner(System.in);
-        try{
-        System.out.print("Enter your friend's name: ");
-        String friendName = scanner.nextLine();
-        friends.add(friendName);
-        saveFriendsList();
-        System.out.println(friendName + " added to your friend list.");
-        }finally{
+        try {
+            System.out.print("Enter your friend's name: ");
+            String friendName = scanner.nextLine();
+            friends.add(friendName);
+            saveFriendsList();
+            System.out.println(friendName + " added to your friend list.");
+        } finally {
             // scanner.close();
         }
     }
 
     public void readFriendsList() {
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName)) ) {
+        try  {
+            BufferedReader reader = new BufferedReader(new FileReader(fileName))
             String line;
             while ((line = reader.readLine()) != null) {
                 friends.add(line);
@@ -45,7 +46,8 @@ class FriendList {
     }
 
     private void saveFriendsList() {
-        try (PrintWriter writer = new PrintWriter(new FileWriter("friends.list"))) {
+        try {
+            PrintWriter writer = new PrintWriter(new FileWriter("friends.list"))
             for (String friend : friends) {
                 writer.println(friend);
             }
