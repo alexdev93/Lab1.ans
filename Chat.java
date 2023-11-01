@@ -21,13 +21,16 @@ class Chat implements ChatOperations {
 
     @Override
     public void readChat() {
-        
-            BufferedReader reader = new BufferedReader(new FileReader(fileName))
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
             String line;
             while ((line = reader.readLine()) != null) {
                 chat.add(line);
                 System.out.println(line);
             }
+        }catch (IOException fileNotFoundException){
+            System.out.println(fileNotFoundException.getMessage());
+        }
     }
 
     @Override
@@ -41,9 +44,13 @@ class Chat implements ChatOperations {
     }
 
     public void saveChat() {
-            PrintWriter writer = new PrintWriter(new FileWriter(fileName))
+        try {
+            PrintWriter writer = new PrintWriter(new FileWriter(fileName));
             for (String message : chat) {
                 writer.println(message);
             }
+        }catch (IOException ioException){
+            System.out.println(ioException.getMessage());
+        }
     }
 }
