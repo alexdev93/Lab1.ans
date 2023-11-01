@@ -28,20 +28,28 @@ class FriendList {
         System.out.println(friendName + " added to your friend list.");
     }
 
-    public void readFriendsList() {
-        BufferedReader reader = new BufferedReader(new FileReader(fileName));
-        String line;
-        while ((line = reader.readLine()) != null) {
-            friends.add(line);
-            System.out.println(line);
+    public void readFriendsList()   {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                friends.add(line);
+                System.out.println(line);
+            }
+        }catch (IOException ioException){
+            System.out.println(ioException.getMessage());
         }
     }
 
     private void saveFriendsList() {
-        FileWriter fileWriter = new FileWriter("friends.list");
-        PrintWriter writer = new PrintWriter(fileWriter);
-        for (String friend : friends) {
-            writer.println(friend);
+        try {
+            FileWriter fileWriter = new FileWriter("friends.list");
+            PrintWriter writer = new PrintWriter(fileWriter);
+            for (String friend : friends) {
+                writer.println(friend);
+            }
+        }catch (IOException ioException){
+            System.out.println(ioException.getMessage());
         }
     }
 }
